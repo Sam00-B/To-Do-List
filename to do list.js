@@ -1,4 +1,5 @@
-let toDolist = [];
+let toDolist = JSON.parse(localStorage.getItem('toDolist')) || [];
+renderList();
 
 function renderList() {
    
@@ -24,6 +25,7 @@ function renderList() {
         
         btn.addEventListener('click', function() {
             toDolist.splice(i, 1);
+            localStorage.setItem('toDolist', JSON.stringify(toDolist));
             renderList();
         });
        card.appendChild(divName);    // Add the Task Name column
@@ -46,6 +48,7 @@ function addTask() {
         toDolist.push({
             name,dueDate
         });
+        localStorage.setItem('toDolist', JSON.stringify(toDolist));
         inputElement.value='';
         renderList()
     
